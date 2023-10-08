@@ -4,7 +4,6 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MediatorLiveData
 import com.example.myapplication.data.local.entity.MovieEntity
 import com.example.myapplication.data.local.room.MovieDao
-import com.example.myapplication.data.remote.api.ApiConfig
 import com.example.myapplication.data.remote.api.ApiService
 import com.example.myapplication.data.remote.response.MovieResponse
 import com.example.myapplication.utils.AppExecutors
@@ -16,7 +15,7 @@ import retrofit2.Response
 class MovieRepository private constructor(
     private val apiService: ApiService,
     private val movieDao: MovieDao,
-    private val appExecutors: AppExecutors
+    private val appExecutors: AppExecutors,
 ) {
     private val result = MediatorLiveData<Result<List<MovieEntity>>>()
     fun getMovieList():LiveData<Result<List<MovieEntity>>>{
@@ -57,7 +56,8 @@ class MovieRepository private constructor(
         fun getInstance(
             apiService: ApiService,
             movieDao: MovieDao,
-            appExecutors: AppExecutors
+            appExecutors: AppExecutors,
+//            service:Service
         ): MovieRepository =
             instance ?: synchronized(this) {
                 instance ?: MovieRepository(apiService, movieDao, appExecutors)
