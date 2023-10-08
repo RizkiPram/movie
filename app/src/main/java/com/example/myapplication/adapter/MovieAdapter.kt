@@ -3,16 +3,17 @@ package com.example.myapplication.adapter
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.example.myapplication.data.local.entity.MovieEntity
 import com.example.myapplication.data.remote.response.ResultsItem
 import com.example.myapplication.databinding.ItemMovieBinding
 
-class MovieAdapter(private val list:ArrayList<ResultsItem>) :
+class MovieAdapter(private val list:ArrayList<MovieEntity>) :
     RecyclerView.Adapter<MovieAdapter.ViewHolder>() {
     inner class ViewHolder(private var binding:ItemMovieBinding) : RecyclerView.ViewHolder(binding.root){
-        fun itemBind(data: ResultsItem) {
+        fun itemBind(data: MovieEntity) {
             binding.apply {
-                tvTittle.text = data.originalTitle
-                tvDate.text=data.releaseDate
+                tvTittle.text = data.title
+                tvDate.text=data.date
             }
         }
     }
