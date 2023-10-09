@@ -3,6 +3,7 @@ package com.example.myapplication.ui
 import android.content.Intent
 import android.os.Build
 import android.os.Bundle
+import android.view.View
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
@@ -45,15 +46,17 @@ class MainActivity : AppCompatActivity() {
             if (result != null) {
                 when (result) {
                     is Result.Loading -> {
-                        //binding progress bar
+                        binding.progressBar.visibility= View.GONE
                     }
 
                     is Result.Success -> {
+                        binding.progressBar.visibility= View.VISIBLE
                         val movieData = result.data
                         setupMovieList(movieData)
                     }
 
                     is Result.Error -> {
+                        binding.progressBar.visibility= View.VISIBLE
                         Toast.makeText(
                             this,
                             "Something Wrong Check Your Connection",
